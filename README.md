@@ -19,4 +19,4 @@ Este script proporciona una interfaz de usuario de texto (Text UI) para aplicaci
 
 **¡Mejora la interacción del usuario en tu juego con esta elegante interfaz de texto!**
 
-**Discord** : 
+**Discord** : https://discord.gg/cheBPA2Fg3
