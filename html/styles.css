@@ -1,0 +1,54 @@
+/* html/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+.key-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+}
+
+.key-box {
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+.key {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);  /* Negro medio transparente */
+    border: 2px solid #fff;  /* Contorno blanco brillante */
+    color: #000000;  /* Texto blanco brillante */
+    text-shadow: 0px 0px 10px rgba(148, 148, 148, 0.8);  /* Sombra brillante */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 232, 103, 0.8);  /* Sombra brillante */
+    animation: fadeIn 1s ease-out forwards;  /* Animación de entrada mejorada */
+    font-size: 25px;
+}
+
+.text {
+    font-weight: bold;
+    color: #fff;  /* Texto blanco brillante */
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);  /* Sombra brillante */
+    white-space: nowrap;
+    opacity: 0;  /* Inicialmente oculto */
+    animation: fadeIn 1s ease-out forwards;  /* Animación de entrada mejorada */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);  /* Escala inicial para una animación más interesante */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
