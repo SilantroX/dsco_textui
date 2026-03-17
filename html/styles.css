@@ -1,54 +1,106 @@
-/* html/styles.css */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+/* =====================================================
+    html/styles.css  ·  minimal rewrite
+   ===================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+/* ── Container ── */
 .key-container {
-    display: none;
     position: fixed;
     top: 50%;
     left: 53%;
     transform: translate(-50%, -50%);
+    display: none;
+    pointer-events: none;
 }
 
+.key-container.visible {
+    display: flex;
+    pointer-events: auto;
+    animation: enterUI 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.key-container.hiding {
+    display: flex;
+    pointer-events: none;
+    animation: exitUI 0.22s ease-in forwards;
+}
+
+/* ── Layout interno ── */
 .key-box {
     display: flex;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
+    gap: 10px;
+    padding: 8px 16px 8px 10px;
+    background: rgba(12, 12, 14, 0.80);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
 }
 
+/* Barra izquierda de acento */
+.key-box::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 22%; bottom: 22%;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.20);
+    border-radius: 0 2px 2px 0;
+}
+
+/* ── Key badge ── */
 .key {
-    width: 40px;
-    height: 40px;
-    background-color: rgb(255, 255, 255);  /* Negro medio transparente */
-    border: 2px solid #fff;  /* Contorno blanco brillante */
-    color: #000000;  /* Texto blanco brillante */
-    text-shadow: 0px 0px 10px rgba(148, 148, 148, 0.8);  /* Sombra brillante */
-    border-radius: 5px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
-    box-shadow: 0px 0px 10px rgba(255, 232, 103, 0.8);  /* Sombra brillante */
-    animation: fadeIn 1s ease-out forwards;  /* Animación de entrada mejorada */
-    font-size: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    text-transform: uppercase;
+    flex-shrink: 0;
 }
 
+/* ── Texto ── */
 .text {
-    font-weight: bold;
-    color: #fff;  /* Texto blanco brillante */
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);  /* Sombra brillante */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.015em;
+    color: rgba(255, 255, 255, 0.70);
     white-space: nowrap;
-    opacity: 0;  /* Inicialmente oculto */
-    animation: fadeIn 1s ease-out forwards;  /* Animación de entrada mejorada */
 }
 
-@keyframes fadeIn {
+/* ── Animaciones ── */
+@keyframes enterUI {
     from {
         opacity: 0;
-        transform: scale(0.8);  /* Escala inicial para una animación más interesante */
+        transform: translate(-50%, -50%) scale(0.94) translateY(6px);
     }
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1) translateY(0);
+    }
+}
+
+@keyframes exitUI {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.97);
     }
 }

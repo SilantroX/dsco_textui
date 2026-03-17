@@ -14,15 +14,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="text">${accion}</div>
             `;
 
-            keyContainer.style.display = 'flex';
+            // Reinicia animación de entrada
+            keyContainer.classList.remove('hiding', 'visible');
+            void keyContainer.offsetWidth; // fuerza reflow
+            keyContainer.classList.add('visible');
+
             playNotificationSound();
+
         } else if (event.data.type === 'hideTextUI') {
-            keyContainer.style.display = 'none';
+            // Cambia a animación de salida
+            keyContainer.classList.remove('visible');
+            keyContainer.classList.add('hiding');
+
+            // Al terminar la animación, oculta el elemento
+            keyContainer.addEventListener('animationend', function handler() {
+                keyContainer.classList.remove('hiding');
+                keyContainer.removeEventListener('animationend', handler);
+            });
         }
     });
 
     function playNotificationSound() {
-        // Intentamos reproducir el sonido. Ten en cuenta que la reproducción podría requerir interacción del usuario.
         try {
             audio.play();
         } catch (error) {
